@@ -2,11 +2,41 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Finance Tracker App
 
-In the project directory, you can run:
+A personal finance tracking application with transaction management, analytics, and an AI-powered financial assistant.
 
-### `npm start`
+## Supabase Setup
+
+This application uses Supabase for data persistence. Follow these steps to set up your Supabase project:
+
+1. Create a Supabase account at [supabase.com](https://supabase.com/) and create a new project
+2. Get your Supabase URL and anon key from the project settings
+3. Create a `.env` file in the root directory with the following variables:
+   ```
+   REACT_APP_SUPABASE_URL=your_supabase_url
+   REACT_APP_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
+4. Set up the database tables in the Supabase dashboard:
+   - Go to the SQL Editor in your Supabase dashboard
+   - Copy the contents of `scripts/setup-supabase.sql` from this repository
+   - Paste it into the SQL Editor and run the queries
+   - This will create the necessary tables and security policies for your application
+
+These tables are required for the application to function properly:
+- `transactions` - Stores all financial transactions
+- `chat_history` - Stores conversation history with the AI assistant
+
+5. Install dependencies:
+   ```
+   npm install
+   ```
+
+## Running the Application
+
+```
+npm start
+```
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -31,13 +61,13 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
 ## Learn More
 
