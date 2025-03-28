@@ -504,6 +504,11 @@ const Dashboard: React.FC = () => {
                             <Button
                                 variant="contained"
                                 onClick={() => navigate('/add-transaction')}
+                                sx={{
+                                    minWidth: { xs: '100%', sm: '200px' },
+                                    width: { xs: '100%', sm: 'auto' },
+                                    maxWidth: '300px'
+                                }}
                             >
                                 Add Your First Transaction
                             </Button>

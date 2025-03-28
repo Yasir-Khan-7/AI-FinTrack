@@ -591,12 +591,20 @@ const TransactionList: React.FC = () => {
                         There are no transactions in the selected date range. Add your first transaction to start tracking your finances.
                     </Typography>
 
-                    <Stack direction="row" spacing={2} justifyContent="center">
+                    <Stack
+                        direction={{ xs: 'column', sm: 'row' }}
+                        spacing={{ xs: 1, sm: 2 }}
+                        justifyContent="center"
+                        sx={{ width: '100%' }}
+                    >
                         <Button
                             variant="contained"
                             size="large"
                             onClick={() => navigate('/add-transaction')}
-                            sx={{ minWidth: '200px' }}
+                            sx={{
+                                minWidth: { xs: '100%', sm: '200px' },
+                                mb: { xs: 1, sm: 0 }
+                            }}
                         >
                             Add Your First Transaction
                         </Button>
