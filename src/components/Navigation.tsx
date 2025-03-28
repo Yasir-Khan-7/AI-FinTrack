@@ -102,32 +102,39 @@ const Navigation: React.FC = () => {
                     ) : (
                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
                             {user && (
-                                <Box sx={{ display: 'flex', alignItems: 'center', mr: 2 }}>
-                                    <AccountCircleIcon sx={{ mr: 1 }} />
+                                <>
                                     <Typography variant="body2" sx={{ mr: 2 }}>
                                         {user.email}
                                     </Typography>
-                                </Box>
+                                    <IconButton
+                                        color="inherit"
+                                        onClick={handleSignOut}
+                                        sx={{ ml: 1 }}
+                                    >
+                                        <LogoutIcon />
+                                    </IconButton>
+                                </>
                             )}
-                            <Button
-                                variant="outlined"
-                                color="inherit"
-                                onClick={handleSignOut}
-                                startIcon={<LogoutIcon />}
-                            >
-                                Sign Out
-                            </Button>
                         </Box>
                     )}
                 </Toolbar>
-
                 <Tabs
                     value={getTabValue()}
                     onChange={handleChange}
-                    variant="fullWidth"
+                    variant={isMobile ? "scrollable" : "fullWidth"}
+                    scrollButtons={isMobile ? "auto" : undefined}
+                    allowScrollButtonsMobile={isMobile}
                     textColor="primary"
                     indicatorColor="primary"
-                    sx={{ borderBottom: 1, borderColor: 'divider' }}
+                    sx={{
+                        borderBottom: 1,
+                        borderColor: 'divider',
+                        '& .MuiTab-root': {
+                            minWidth: isMobile ? 'auto' : undefined,
+                            fontSize: isMobile ? '0.75rem' : undefined,
+                            px: isMobile ? 1 : 2,
+                        }
+                    }}
                 >
                     <Tab
                         icon={<DashboardIcon />}
