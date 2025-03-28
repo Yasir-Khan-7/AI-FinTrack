@@ -25,6 +25,9 @@ export const AuthComponent: React.FC = () => {
     const [message, setMessage] = useState<string | null>(null);
     const [redirecting, setRedirecting] = useState(false);
 
+    // Define the app URL for redirects
+    const appUrl = 'https://yasir-khan-7.github.io/AI-FinTrack';
+
     useEffect(() => {
         // Clear messages when mode changes
         setError(null);
@@ -77,7 +80,7 @@ export const AuthComponent: React.FC = () => {
 
         try {
             const { error } = await supabase.auth.resetPasswordForEmail(email, {
-                redirectTo: `${window.location.origin}/reset-password`,
+                redirectTo: `${appUrl}/reset-password`,
             });
 
             if (error) throw error;

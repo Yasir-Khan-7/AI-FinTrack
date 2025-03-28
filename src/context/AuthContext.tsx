@@ -27,9 +27,9 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const useAuth = (): AuthContextType => {
+export const useAuth = () => {
     const context = useContext(AuthContext);
-    if (!context) {
+    if (context === undefined) {
         throw new Error('useAuth must be used within an AuthProvider');
     }
     return context;
@@ -43,6 +43,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const [session, setSession] = useState<Session | null>(null);
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
+
+    // Define the app URL for redirects
+    const appUrl = 'https://yasir-khan-7.github.io/AI-FinTrack';
 
     useEffect(() => {
         // Get initial session
@@ -73,7 +76,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
                 email,
                 password,
                 options: {
-                    emailRedirectTo: `${window.location.origin}/auth/callback`,
+                    emailRedirectTo: `${appUrl}/auth/callback`,
                 }
             });
 
@@ -140,7 +143,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const resetPassword = async (email: string) => {
         try {
             const { error } = await supabase.auth.resetPasswordForEmail(email, {
-                redirectTo: `${window.location.origin}/reset-password`,
+                redirectTo: `${appUrl}/reset-password`,
             });
 
             return {
@@ -163,7 +166,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
                 email,
                 password: 'temporary-password-for-verification-only', // This won't actually be used
                 options: {
-                    emailRedirectTo: `${window.location.origin}/auth/callback`,
+                    emailRedirectTo: `${appUrl}/auth/callback`,
                 }
             });
 
